@@ -12,6 +12,10 @@ public class maxsec {
     static char[] elements = {' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'ß', '?', '=', ')', '(', '/', '&', '%', '$', '§', '"', '!', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '<', '>', '|', ',', ';', '.', ':', '-', '_', '*', '+', '~', '#', '\'', '^', '°', '¹', '²', '³', '¼', '½', '¬', '{', '[', ']', '}', '\\', '´', '`', '\n', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     //char[] elements = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'};
     public static void main(String[] args) {
+        maxsec ma = new maxsec();
+        System.out.println(ma.enc());
+    }
+    public String enc() {
         String password = JOptionPane.showInputDialog(null, "put in password");
         String toBeEncrypted = JOptionPane.showInputDialog(null, "what would you like to encrypt?");
         maxsec maxsec = new maxsec();
@@ -37,17 +41,23 @@ public class maxsec {
 
         int[] enP = maxsec.encryptedPosition(redecrypted);
         String ddecrypted = maxsec.decrypted(enP, pwPosition);
-        System.out.println(ddecrypted);
+        return ddecrypted;
     }
     String longPassword(String password, String toBeEncrypted){
         StringBuilder longPassword = new StringBuilder(password);
         int i = 0;
-        while(longPassword.length()<=toBeEncrypted.length()){
-            longPassword.append(password.charAt(i));
-            i++;
-            if (i>=password.length()) {
-                i=0;
+        if(longPassword.length()<=toBeEncrypted.length()){
+            while(longPassword.length()<=toBeEncrypted.length()){
+                longPassword.append(password.charAt(i));
+                i++;
+                if (i>=password.length()) {
+                    i=0;
+                }
             }
+        }
+        else{
+            int a = longPassword.length()-toBeEncrypted.length();
+            longPassword.delete(longPassword.length()-a, longPassword.length()-1);
         }
         return longPassword.toString();
     }
