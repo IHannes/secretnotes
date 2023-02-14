@@ -23,20 +23,20 @@ public class maxsec {
             System.out.println("sum" + i);
         }*/
         String encrypted = maxsec.encrypted(sums);
-        System.out.println("Enc+ " + encrypted);
+        //System.out.println("Enc+ " + encrypted);
         int[] encryptedPosition = maxsec.encryptedPosition(encrypted);
         String decrypted = maxsec.decrypted(encryptedPosition, pwPosition);
         //System.out.println(decrypted);
 
         String[] randomStringArray = maxsec.generateArrayOfRandomStrings(encrypted.length()+1, pwPosition);
-        String reencrypted = maxsec.reencrypt(encrypted, randomStringArray);
+        String reencrypted = maxsec.reencrypt(encrypted, randomStringArray, toBeEncrypted.length());
         //System.out.println(reencrypted);
         String redecrypted = maxsec.redecrypt(reencrypted, pwPosition);
         //System.out.println(redecrypted);
 
         int[] enP = maxsec.encryptedPosition(redecrypted);
         String ddecrypted = maxsec.decrypted(enP, pwPosition);
-        System.out.println(ddecrypted);
+        //System.out.println(ddecrypted);
     }
     String longPassword(String password, String toBeEncrypted){
         StringBuilder longPassword = new StringBuilder(password);
@@ -52,6 +52,23 @@ public class maxsec {
         }
         else{
             longPassword.delete(toBeEncrypted.length(), password.length()-1);
+        }
+        return longPassword.toString();
+    }
+    String longPassword(String password, int length){
+        StringBuilder longPassword = new StringBuilder(password);
+        int i = 0;
+        if(longPassword.length()<=length){
+            while(longPassword.length()<=length){
+                longPassword.append(password.charAt(i));
+                i++;
+                if (i>=password.length()) {
+                    i=0;
+                }
+            }
+        }
+        else{
+            longPassword.delete(length, password.length()-1);
         }
         return longPassword.toString();
     }
@@ -104,7 +121,7 @@ public class maxsec {
             encryptedPosition[i]= new String(elements).indexOf(encrypted.charAt(i));
         }
         for (int w : encryptedPosition) {
-            System.out.println(w);
+            //System.out.println(w);
         }
         return encryptedPosition;
     }
@@ -113,15 +130,15 @@ public class maxsec {
         for (int i = 0; i < encryptedPosition.length; i++) {
             if ((encryptedPosition[i]-passwordPosition[i])<=elements.length && (encryptedPosition[i]-passwordPosition[i])>=0) {
                 strb.append(elements[encryptedPosition[i]-passwordPosition[i]]);
-                System.out.println("eins " + (encryptedPosition[i]-passwordPosition[i]));
+                //System.out.println("eins " + (encryptedPosition[i]-passwordPosition[i]));
             }
             else if((encryptedPosition[i]-passwordPosition[i])>elements.length){
                 strb.append(elements[(encryptedPosition[i]-passwordPosition[i])-elements.length]);
-                System.out.println("zwei " + (encryptedPosition[i]-passwordPosition[i]));
+                //System.out.println("zwei " + (encryptedPosition[i]-passwordPosition[i]));
             }
             else{
                 strb.append(elements[encryptedPosition[i]-passwordPosition[i]+elements.length]);
-                System.out.println("drei " + (encryptedPosition[i]-passwordPosition[i]+elements.length));
+                //System.out.println("drei " + (encryptedPosition[i]-passwordPosition[i]+elements.length));
             }
         }
         //strb.append("hh");
@@ -144,18 +161,18 @@ public class maxsec {
         }
         
         for (int i = 0; i < randomStringArray.length; i++) {
-            System.out.println(randomStringArray[i].length() + "  " + passwordPosition[i]);
+            //System.out.println(randomStringArray[i].length() + "  " + passwordPosition[i]);
         }
         return randomStringArray;
     }
-    String reencrypt(String encrypted, String[] randomStringArray){
+    String reencrypt(String encrypted, String[] randomStringArray, int length){
         StringBuilder strb = new StringBuilder("");
         int counter = 0;
         for (int i = 0; i < encrypted.length(); i++) {
             strb.append(randomStringArray[i]);
             strb.append(encrypted.charAt(i));
         }
-        return strb.toString();
+        return strb.toString() + length;
     }
 
     String redecrypt(String reencrypted, int[] passwordPosition){
