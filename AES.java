@@ -37,11 +37,11 @@ public class AES {
         
 
         byte[] input = Message.getBytes();
-        System.out.println(new String(input));
+        //System.out.println(new String(input));
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte[] encryptedBytes = cipher.doFinal(input);
-        System.out.println(new String(encryptedBytes));
+        //System.out.println(new String(encryptedBytes));
         return encryptedBytes;
 
     }
@@ -90,7 +90,7 @@ public class AES {
         FileInputStream fis = new FileInputStream(file);
         ks.load(fis, password.toCharArray());
         KeyStore.PasswordProtection protectionParam = new KeyStore.PasswordProtection(password.toCharArray());
-        System.out.println( ks.containsAlias("hannes"));
+        //System.out.println( ks.containsAlias("hannes"));
         KeyStore.Entry entry = ks.getEntry("hannes", protectionParam);
         KeyStore.SecretKeyEntry secretKeyEntry = (KeyStore.SecretKeyEntry) entry;
         Key key = secretKeyEntry.getSecretKey();
