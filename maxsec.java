@@ -36,7 +36,7 @@ public class maxsec {
 
         int[] enP = maxsec.encryptedPosition(redecrypted);
         String ddecrypted = maxsec.decrypted(enP, pwPosition);
-        //System.out.println(ddecrypted);
+        System.out.println(ddecrypted);
     }
     String longPassword(String password, String toBeEncrypted){
         StringBuilder longPassword = new StringBuilder(password);
@@ -172,6 +172,7 @@ public class maxsec {
             strb.append(randomStringArray[i]);
             strb.append(encrypted.charAt(i));
         }
+        strb.append("||||");
         return strb.toString() + length;
     }
 
