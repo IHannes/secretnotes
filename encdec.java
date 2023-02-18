@@ -7,6 +7,7 @@ public class encdec{
     public String encrypt(String input, String password){
         maxsec maxi = new maxsec();
         String longPassword = maxi.longPassword(password, input);
+        System.out.println("lp: " + longPassword + "\n\n");
         int[] pwPosition = maxi.passwordPosition(longPassword);
         int[] tBEPosition = maxi.tBEPosition(input);
         int[] sums = maxi.sums(pwPosition, tBEPosition);
@@ -38,14 +39,41 @@ public class encdec{
         } catch (Exception e) {
             System.err.println(e);
         }
-        int length = Character.getNumericValue(res.charAt(res.length()-1));
+        System.out.println("res: " + res + "\n\n");
+        int length = getLength(res);
+        int pos = getPos(res);
+        System.out.println("lenghth: " + length + "\n\n");
         maxsec m = new maxsec();
-        res.delete(res.length()-1, res.length());
+        res.delete(pos, res.length());
         String longPassword = m.longPassword(password, length);
+        System.out.println("lp: " + longPassword + "\n\n");
         int[] pwPosition = m.passwordPosition(longPassword);
+        System.out.println(res + "\n\n");
         String redecrypted = m.redecrypt(res.toString(), pwPosition);
+        System.out.println(redecrypted);
         int[] enP = m.encryptedPosition(redecrypted);
+        System.out.println("pwp: " + pwPosition.length);
+        System.out.println("encp: " + enP.length);
         String result = m.decrypted(enP, pwPosition);
         return result;
+    }
+    private static int getLength(StringBuilder res){
+        StringBuilder strb = new StringBuilder("");
+        for(int i = 0; i<res.length(); i++){
+            if(res.charAt(i)=='|' && res.charAt(i+1)=='|' && res.charAt(i+2)=='|' && res.charAt(i+3)=='|'){
+                System.out.println("success: " + res.substring(i+4, res.length()));
+                strb.append(res.substring(i+4, res.length()));
+                break;
+            }
+        }
+        return Integer.parseInt(strb.toString());
+    }
+    private static int getPos(StringBuilder res){
+        for(int i = 0; i<res.length(); i++){
+            if(res.charAt(i)=='|' && res.charAt(i+1)=='|' && res.charAt(i+2)=='|' && res.charAt(i+3)=='|'){
+                return i;
+            }
+        }
+        return -1;
     }
 }
