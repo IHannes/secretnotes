@@ -8,7 +8,7 @@
     cd ~/secretnotes
     sh launch.sh
     ```
-3. To launch again, do
+3. To launch again, do:
     ```bash
     cd ~/secretnotes
     java gui
