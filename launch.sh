@@ -2,14 +2,7 @@
 
 NOTE=$(zenity --title="Title" --text "Insert title of yor Note" --entry --width 450)
 PWD=$(zenity --title="Password" --text "Insert your Password here" --entry --width 450)
-<<<<<<< HEAD
-<<<<<<< HEAD
-NOTE=$(zenity --title"Title" --text "Insert title of yor Note" --entry --width 450)
-=======
->>>>>>> aac8ba3e5081f8900e171ce6f5bf4d45de900af1
-=======
->>>>>>> aac8ba3e5081f8900e171ce6f5bf4d45de900af1
-keytool -genseckey -alias "$NOTE" -keypass "$PWD" -keyalg AES -keysize 128 -keystore notes.pfx -storepass "$PWD" -storetype PKCS12 -v
+keytool -genseckey -alias "$NOTE" -keypass "$PWD" -keyalg AES -keysize 256 -keystore notes.pfx -storepass "$PWD" -storetype PKCS12 -v
 
 javac AES.java
 javac maxsec.java
