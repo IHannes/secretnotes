@@ -13,3 +13,7 @@
     cd ~/secretnotes
     java gui
     ```
+4. Or else do everything in one step:
+ ```bash
+    git clone https://github.com/ihannes/secretnotes && cd secretnotes && sh launch.sh && java gui
+ ```
