@@ -27,7 +27,7 @@ cd ~/secretnotes && sh launch.sh
 again and ignore the error codes.
 ### How it works
 This is a basic text editor that allows you to write some text and store it as .txt file. The text you store is encrypted with two encryption modes:
-- [AES](https://en.wikipedia.org/AES) (Keysize: 256, ECB padding)
+- [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (Keysize: 256, ECB padding)
 - Custom encryption method based on Letter Substitution
 
     #### Custom encryption method
