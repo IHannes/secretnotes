@@ -1,7 +1,7 @@
 ## SecretNotes
 
 ### Installation and usage
-1. Clone this remote from remote:
+1. Clone this repo from remote:
     ```bash
     git clone https://github.com/ihannes/secretnotes
     ```
